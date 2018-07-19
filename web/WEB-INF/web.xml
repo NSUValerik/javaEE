@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--<servlet>-->
+    <!--<servlet-name>HelloServlet</servlet-name>-->
+    <!--<servlet-class>HelloServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>HelloServlet</servlet-name>-->
+    <!--<url-pattern>/helloServlet</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <welcome-file-list>
+        <welcome-file>/jsp/reqResp.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!--    <session-config>
+            <session-timeout>30</session-timeout>
+        </session-config>-->
+
+    <!--<icon>-->
+    <!--<small-icon></small-icon>-->
+    <!--<large-icon></large-icon>-->
+    <!--</icon>-->
+    <!--<description></description>-->
+    <!--<display-name></display-name>-->
+
+    <!--<mime-mapping>-->
+    <!--<extension></extension>-->
+    <!--<mime-type></mime-type>-->
+    <!--</mime-mapping>-->
+
+    <!--    <locale-encoding-mapping-list>
+            <locale-encoding-mapping>
+                <locale>he</locale>
+                <encoding>windows-1251</encoding>
+            </locale-encoding-mapping>
+        </locale-encoding-mapping-list>-->
+
+    <!--для распределенного-->
+    <!--<distributable/>-->
+
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>servlets.testServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/servlets/aaa*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>test_2</servlet-name>
+        <servlet-class>servlets.testServlet_2</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test_2</servlet-name>
+        <url-pattern>/servlets/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>test_3</servlet-name>
+        <servlet-class>servlets.testServlet_3</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test_3</servlet-name>
+        <url-pattern>/servlets/test/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>init</servlet-name>
+        <servlet-class>servlets.initServlet</servlet-class>
+        <init-param>
+            <param-name>myParam</param-name>
+            <param-value>e-pi-kay-yey-yey</param-value>
+        </init-param>
+        <init-param>
+            <param-name>myParam_2</param-name>
+            <param-value>i'll be back</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <!--если например сервлет что-то кладет в контекст в общем инициализирует то он должен быть загружен первым-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>init</servlet-name>
+        <url-pattern>/servlets/unit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>init_2</servlet-name>
+        <jsp-file>/jsp/init.jsp</jsp-file>
+        <init-param>
+            <param-name>myParam</param-name>
+            <param-value>e-pi-kay-yey-yey</param-value>
+        </init-param>
+        <init-param>
+            <param-name>myParam_2</param-name>
+            <param-value>i'll be back</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>init_2</servlet-name>
+        <url-pattern>/jsp/initDest</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>email</param-name>
+        <param-value>mail@alalal</param-value>
+    </context-param>
+
+    <error-page>
+        <!--<error-code>404</error-code>-->
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/jsp/errorPage.jsp</location>
+    </error-page>
+
+    <jsp-config>
+        <!--настройка тэгов (библиотека с тэгами)-->
+        <!--<taglib>
+            <taglib-uri></taglib-uri>
+            <taglib-location></taglib-location>
+        </taglib>-->
+        <jsp-property-group>
+            <url-pattern>/jsp/*</url-pattern>
+            <el-ignored>false</el-ignored>
+            <!--<scripting-invalid>true</scripting-invalid>-->
+            <!--<is-xml>true</is-xml>-->
+            <include-prelude>/jsp/header.jsp</include-prelude>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>/jsp/*</url-pattern>
+            <include-coda>/jsp/footer.jsp</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+
+    <!--<login-config>-->
+        <!--<auth-method>BASIC</auth-method>-->
+        <!--<realm-name>This is realm name</realm-name>-->
+    <!--</login-config>-->
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/jsp/logging.jsp</form-login-page>
+            <form-error-page>/jsp/loggingError.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>SecureJsp</web-resource-name>
+            <url-pattern>/jsp/view.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>root</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+</web-app>
