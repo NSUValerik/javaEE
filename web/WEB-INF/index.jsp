@@ -3,12 +3,19 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="jsp.JSPHelper" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/tag/MyTag.tld" %>
 <html>
   <head>
     <title>index</title>
   </head>
   <body>
   index
+  <br/>
+  <tag:MyTag param="myParam">body Tag ${param_context} ${tag:doubleSum(3.0, 54)}
+      <br/>
+    <tag:InnerTag></tag:InnerTag>
+  </tag:MyTag>
+  <br/>
   <%--declaration--%>
   <%! int i = 5; %>
   <%! private String getString()

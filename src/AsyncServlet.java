@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/asyncServlet", asyncSupported = true)
-public class asyncServlet extends HttpServlet {
+@WebServlet(value = "/AsyncServlet", asyncSupported = true)
+public class AsyncServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AsyncContext context = req.getAsyncContext();

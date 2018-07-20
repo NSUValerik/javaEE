@@ -111,6 +111,20 @@
         <url-pattern>/jsp/initDest</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>filter</filter-name>
+        <filter-class>filter.Filter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>listeners.Listener</listener-class>
+    </listener>
+
     <context-param>
         <param-name>email</param-name>
         <param-value>mail@alalal</param-value>
