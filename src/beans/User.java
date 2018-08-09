@@ -20,4 +20,9 @@ public class User {
     public void setParam(String param) {
         this.param = param;
     }
+
+    public void someMethod()
+    {
+        System.out.println( "someMethod" );
+    }
 }
