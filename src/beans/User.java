@@ -25,4 +25,8 @@ public class User {
     {
         System.out.println( "someMethod" );
     }
+    public static void main(String[] args)
+    {
+        System.out.println( "new main func" );
+    }
 }
